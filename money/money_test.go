@@ -1,12 +1,13 @@
 package money
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMoney(t *testing.T) {
 	var five *Dollar = newDollar(5)
 	five.times(2)
-	assert.Equal(t, 10, five.amount)
+	assert.Equal(t, 10, five.Amount)
 }
