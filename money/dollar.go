@@ -11,5 +11,5 @@ func newDollar(amount int) *Dollar {
 }
 
 func (d *Dollar) times(multiplier int) {
-	d.Amount = d.Amount * 2
+	d.Amount *= multiplier
 }
