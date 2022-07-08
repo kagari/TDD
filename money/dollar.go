@@ -6,9 +6,10 @@ type Dollar struct {
 
 func newDollar(amount int) *Dollar {
 	d := new(Dollar)
+	d.Amount = amount
 	return d
 }
 
 func (d *Dollar) times(multiplier int) {
-	d.Amount = 5 * 2
+	d.Amount = d.Amount * 2
 }
