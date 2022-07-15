@@ -1,7 +1,7 @@
 package money
 
 type Dollar struct {
-	amount int
+	Money
 }
 
 func newDollar(amount int) *Dollar {
@@ -15,5 +15,5 @@ func (d *Dollar) times(multiplier int) *Dollar {
 }
 
 func (d *Dollar) equals(object *Dollar) bool {
-	return d.amount == object.amount
+	return d.Money.equals(&object.Money)
 }

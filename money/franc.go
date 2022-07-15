@@ -1,19 +1,19 @@
 package money
 
 type Franc struct {
-	amount int
+	Money
 }
 
 func newFranc(amount int) *Franc {
-	d := new(Franc)
-	d.amount = amount
-	return d
+	f := new(Franc)
+	f.amount = amount
+	return f
 }
 
-func (d *Franc) times(multiplier int) *Franc {
-	return newFranc(d.amount * multiplier)
+func (f *Franc) times(multiplier int) *Franc {
+	return newFranc(f.amount * multiplier)
 }
 
-func (d *Franc) equals(object *Franc) bool {
-	return d.amount == object.amount
+func (f *Franc) equals(object *Franc) bool {
+	return f.Money.equals(&object.Money)
 }
