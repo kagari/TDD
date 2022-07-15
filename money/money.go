@@ -9,7 +9,7 @@ type Money struct {
 }
 
 type Equallity interface {
-	mequals(*Money) bool
+	equals(*Money) bool
 }
 
 type HasMoney interface {
@@ -21,6 +21,6 @@ func (m *Money) equals(object *Money) bool {
 }
 
 func equals(object Equallity, amount HasMoney) bool {
-	return object.mequals(amount.get_money()) &&
+	return object.equals(amount.get_money()) &&
 		reflect.TypeOf(object) == reflect.TypeOf(amount)
 }
