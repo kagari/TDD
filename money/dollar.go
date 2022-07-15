@@ -17,3 +17,11 @@ func (d *Dollar) times(multiplier int) *Dollar {
 func (d *Dollar) equals(object *Dollar) bool {
 	return d.Money.equals(&object.Money)
 }
+
+func (d *Dollar) mequals(object *Money) bool {
+        return d.Money.equals(object)
+}
+
+func (d *Dollar) get_money() *Money {
+        return &d.Money
+}

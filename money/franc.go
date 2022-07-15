@@ -22,3 +22,7 @@ func (f *Franc) mequals(object *Money) bool {
 	return f.Money.equals(object)
 }
 
+func (f *Franc) get_money() *Money {
+	return &f.Money
+}
+

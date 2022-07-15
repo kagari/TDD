@@ -13,11 +13,11 @@ func TestMultiplication(t *testing.T) {
 }
 
 func TestEquality(t *testing.T) {
-	assert.True(t, newDollar(5).equals(newDollar(5)))
-	assert.False(t, newDollar(5).equals(newDollar(6)))
-	assert.True(t, newFranc(5).equals(newFranc(5)))
-	assert.False(t, newFranc(5).equals(newFranc(6)))
-	assert.False(t, equals(newFranc(5), newDollar(5).Money))
+	assert.True(t, equals(newDollar(5), newDollar(5)))
+	assert.False(t, equals(newDollar(5), newDollar(6)))
+	assert.True(t, equals(newFranc(5),newFranc(5)))
+	assert.False(t, equals(newFranc(5), newFranc(6)))
+	assert.False(t, equals(newFranc(5), newDollar(5)))
 }
 
 func TestFrancMultiplication(t *testing.T) {
