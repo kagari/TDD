@@ -14,10 +14,6 @@ func (d *Dollar) times(multiplier int) *Dollar {
 	return newDollar(d.amount * multiplier)
 }
 
-func (d *Dollar) equals(object *Dollar) bool {
-	return d.Money.equals(&object.Money)
-}
-
 func (d *Dollar) mequals(object *Money) bool {
         return d.Money.equals(object)
 }
