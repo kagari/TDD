@@ -1,6 +1,9 @@
+from typing import Any
+
+
 class Money:
-    def __init__(self) -> Money:
+    def __init__(self) -> Any:
         self.amount: int = 0
 
-    def equals(money: Money) -> bool:
+    def __eq__(self, money: Any) -> bool:
         return self.amount == money.amount
