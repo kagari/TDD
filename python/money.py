@@ -6,4 +6,5 @@ class Money:
         self.amount: int = 0
 
     def __eq__(self, money: Any) -> bool:
-        return self.amount == money.amount
+        return self.amount == money.amount \
+           and type(self) == type(money)
