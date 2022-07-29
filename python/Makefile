@@ -3,4 +3,4 @@
 	touch .env
 
 test: .env
-	docker run --rm -it -v ${PWD}:/app -w /app tdd:python3 mypy --strict money.py
+	docker run --rm -it -v ${PWD}:/app -w /app tdd:python python money_test.py -v 
