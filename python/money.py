@@ -11,14 +11,16 @@ class Money(ABC):
         if not isinstance(money, Money):
             return NotImplemented
         return self.amount == money.amount \
-           and type(self) == type(money)
+           and self.get_currency() == money.get_currency()
     
-    @abstractmethod
     def times(self, multiplier: int) -> Money:
-        pass
+        return Money(self.amount * multiplier, self.currency)
 
     def get_currency(self) -> str:
         return self.currency
+
+    def __str__(self):
+        return f"{self.amount}{self.currency}"
 
     @staticmethod
     def dollar(amount: int) -> Money:
