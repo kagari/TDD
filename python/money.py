@@ -6,12 +6,14 @@ class Money(ABC):
     def __init__(self) -> None:
         self.amount: int = 0
 
-    def __eq__(self, money: Money) -> bool:
+    def __eq__(self, money: object) -> bool:
+        if not isinstance(money, Money):
+            return NotImplemented
         return self.amount == money.amount \
            and type(self) == type(money)
     
     @abstractmethod
-    def times(multiplier: int) -> Money:
+    def times(self, multiplier: int) -> Money:
         pass
 
     @staticmethod
