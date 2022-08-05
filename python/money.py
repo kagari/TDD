@@ -1,8 +1,9 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from expression import Expression
 
 
-class Money(ABC):
+class Money(Expression):
     def __init__(self, amount: int, currency: str) -> None:
         self.amount: int = amount
         self.currency: str = currency
@@ -21,6 +22,9 @@ class Money(ABC):
 
     def __str__(self) -> str:
         return f"{self.amount}{self.currency}"
+
+    def plus(self, addend: Money) -> Expression:
+        return Money(self.amount + addend.amount, self.currency)
 
     @staticmethod
     def dollar(amount: int) -> Money:
