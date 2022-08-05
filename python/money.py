@@ -19,7 +19,7 @@ class Money(ABC):
     def get_currency(self) -> str:
         return self.currency
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.amount}{self.currency}"
 
     @staticmethod
