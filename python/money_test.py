@@ -38,13 +38,22 @@ class MoneyTest(unittest.TestCase):
     def test_reduce_sum(self) -> None:
         sum_: Expression = Sum(Money.dollar(3), Money.dollar(4))
         bank: Bank = Bank()
-        result: Money = bank.reduce(sum_, "USD")
+        result: Money = bank.reduce(sum_, 'USD')
         self.assertEqual(Money.dollar(7), result)
 
     def test_reduce_money(self) -> None:
         bank: Bank = Bank()
-        result: Money = bank.reduce(Money.dollar(1), "USD")
+        result: Money = bank.reduce(Money.dollar(1), 'USD')
         self.assertEqual(Money.dollar(1), result)
+
+    def test_reduce_money_different_currency(self) -> None:
+        bank: Bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+        result: Money = bank.reduce(Money.franc(2), 'USD')
+        self.assertEqual(Money.dollar(1), result)
+
+    def test_identity_rate(self) -> None:
+        self.assertEqual(1, Bank().rate('USD', 'USD'))
 
 if __name__ == '__main__':
     unittest.main()

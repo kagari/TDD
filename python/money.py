@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 from expression import Expression
 if TYPE_CHECKING:
+    from bank import Bank
     from sum import Sum
 
 
@@ -30,8 +31,9 @@ class Money(Expression):
         from sum import Sum
         return Sum(self, addend)
 
-    def reduce(self, to: str) -> Money:
-        return self
+    def reduce(self, bank: Bank, to: str) -> Money:
+        rate: int = bank.rate(self.currency, to)
+        return Money(self.amount // rate, to)
 
     @staticmethod
     def dollar(amount: int) -> Money:
