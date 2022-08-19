@@ -3,6 +3,7 @@ import unittest
 from money import Money
 from expression import Expression
 from bank import Bank
+from sum import Sum 
 
 
 class MoneyTest(unittest.TestCase):
@@ -26,6 +27,19 @@ class MoneyTest(unittest.TestCase):
         bank: Bank = Bank()
         reduced: Money = bank.reduce(sum_, 'USD')
         self.assertEqual(Money.dollar(10), reduced)
+
+    def test_puls_returns_sum(self) -> None:
+        five: Money = Money.dollar(5)
+        result: Expression = five.plus(five)
+        sum_: Sum = result
+        self.assertEqual(five, sum_.augend)
+        self.assertEqual(five, sum_.addend)
+
+    def test_reduce_sum(self) -> None:
+        sum_: Expression = Sum(Money.dollar(3), Money.dollar(4))
+        bank: Bank = Bank()
+        result: Money = bank.reduce(sum_, "USD")
+        self.assertEqual(Money.dollar(7), result)
 
 if __name__ == '__main__':
     unittest.main()
