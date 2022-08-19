@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
 
+
 class Expression(ABC):
-    pass
+    @abstractmethod
+    def reduce(to: str) -> 'Money':
+        pass
