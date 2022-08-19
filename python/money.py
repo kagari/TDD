@@ -18,7 +18,7 @@ class Money(Expression):
         return self.amount == money.amount \
            and self.get_currency() == money.get_currency()
     
-    def times(self, multiplier: int) -> Money:
+    def times(self, multiplier: int) -> Expression:
         return Money(self.amount * multiplier, self.currency)
 
     def get_currency(self) -> str:
@@ -27,7 +27,7 @@ class Money(Expression):
     def __str__(self) -> str:
         return f"{self.amount}{self.currency}"
 
-    def plus(self, addend: Money) -> Sum:
+    def plus(self, addend: Expression) -> Sum:
         from sum import Sum
         return Sum(self, addend)
 

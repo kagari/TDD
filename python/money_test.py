@@ -55,5 +55,14 @@ class MoneyTest(unittest.TestCase):
     def test_identity_rate(self) -> None:
         self.assertEqual(1, Bank().rate('USD', 'USD'))
 
+    def test_mixed_addiction(self) -> None:
+        five_bucks: Expression = Money.dollar(5)
+        ten_francs: Expression = Money.franc(10)
+        bank: Bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+        result: Money = bank.reduce(five_bucks.plus(ten_francs), 'USD')
+        self.assertEqual(Money.dollar(10), result)
+
+
 if __name__ == '__main__':
     unittest.main()
