@@ -1,7 +1,9 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
 
 from expression import Expression
+if TYPE_CHECKING:
+    from sum import Sum
 
 
 class Money(Expression):
@@ -24,7 +26,7 @@ class Money(Expression):
     def __str__(self) -> str:
         return f"{self.amount}{self.currency}"
 
-    def plus(self, addend: Money) -> "Sum":
+    def plus(self, addend: Money) -> Sum:
         from sum import Sum
         return Sum(self, addend)
 
