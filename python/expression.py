@@ -9,6 +9,10 @@ if TYPE_CHECKING:
 
 class Expression(ABC):
     @abstractmethod
+    def times(self, multiplier: int) -> Expression:
+        pass
+
+    @abstractmethod
     def plus(self, addend: Expression) -> Expression:
         pass
 
