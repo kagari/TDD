@@ -5,7 +5,7 @@ class TestCase:
     def __init__(self, name: str) -> None:
         self.name = name
 
-    def setUp(self):
+    def setUp(self) -> None:
         pass
 
     def run(self) -> None:
@@ -15,7 +15,7 @@ class TestCase:
 
 
 class WasRun(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.wasRun: Optional[int] = None
         self.wasSetUp = 1
 
@@ -24,14 +24,14 @@ class WasRun(TestCase):
 
 
 class TestCaseTest(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.test = WasRun("testMethod")
 
     def testRunning(self) -> None:
         self.test.run()
         assert self.test.wasRun
 
-    def testSetUp(self):
+    def testSetUp(self) -> None:
         self.test.run()
         assert self.test.wasSetUp
 
