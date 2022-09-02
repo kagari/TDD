@@ -1,12 +1,19 @@
 from typing import Optional
 
 
-class WasRun:
+class TestCase:
     def __init__(self, name: str) -> None:
-        self.wasRun: Optional[int] = None
+        self.name = name
 
     def run(self) -> None:
-        self.testMethod()
+        method = getattr(self, self.name)
+        method()
+
+
+class WasRun(TestCase):
+    def __init__(self, name: str) -> None:
+        self.wasRun: Optional[int] = None
+        super().__init__(name)
 
     def testMethod(self) -> None:
         self.wasRun = 1
