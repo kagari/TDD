@@ -15,11 +15,8 @@ class TestCase:
 
 
 class WasRun(TestCase):
-    def __init__(self, name: str) -> None:
-        self.wasRun: Optional[int] = None
-        super().__init__(name)
-
     def setUp(self):
+        self.wasRun: Optional[int] = 1
         self.wasSetUp = 1
 
     def testMethod(self) -> None:
@@ -29,7 +26,6 @@ class WasRun(TestCase):
 class TestCaseTest(TestCase):
     def testRunning(self) -> None:
         test =  WasRun("testMethod")
-        assert not test.wasRun
         test.run()
         assert test.wasRun
 
