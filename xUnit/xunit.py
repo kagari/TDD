@@ -20,7 +20,7 @@ class WasRun(TestCase):
 
 
 class TestCaseTest(TestCase):
-    def testRunning(self):
+    def testRunning(self) -> None:
         test =  WasRun("testMethod")
         assert not test.wasRun
         test.run()
