@@ -4,12 +4,16 @@ from typing import Optional
 class TestResult:
     def __init__(self) -> None:
         self.runCount = 0
+        self.errorCount = 0
 
     def testStarted(self) -> None:
         self.runCount += 1
 
+    def testFailed(self) -> None:
+        self.errorCount += 1
+
     def summary(self) -> str:
-        return f"{self.runCount} run, 0 failed"
+        return f"{self.runCount} run, {self.errorCount} failed"
 
 
 class TestCase:
@@ -26,8 +30,11 @@ class TestCase:
         result = TestResult()
         result.testStarted()
         self.setUp()
-        method = getattr(self, self.name)
-        method()
+        try:
+            method = getattr(self, self.name)
+            method()
+        except:
+            result.testFailed()
         self.tearDown()
         return result
 
@@ -62,6 +69,14 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert "1 run, 1 failed" == result.summary()
 
-TestCaseTest("testTemplateMethod").run()
-TestCaseTest("testResult").run()
-# TestCaseTest("testFailedResult").run()
+    def testFailedResultFormatting(self) -> None:
+        result = TestResult()
+        result.testStarted()
+        result.testFailed()
+        assert "1 run, 1 failed" == result.summary()
+
+
+print(TestCaseTest("testTemplateMethod").run().summary())
+print(TestCaseTest("testResult").run().summary())
+print(TestCaseTest("testFailedResult").run().summary())
+print(TestCaseTest("testFailedResultFormatting").run().summary())
